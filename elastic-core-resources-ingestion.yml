@@ -68,6 +68,66 @@ Parameters:
       Description: 'Specify the IDs of the route tables to be updated for the S3 bucket Gateway VPC Endpoint. Provide values only if deploying the Elastic serverless forwarder in a VPC.'
       ConstraintDescription: 'Please enter valid Route Table IDs.'
       
+    TagKeyName1:
+      Type: String
+      Description: The key for Tag 1 to be added for the resources being deployed.
+      Default: "division"
+      
+    TagValueName1:
+      Type: String
+      Description: The value for Tag 1 to be added for the resources being deployed.
+      Default: "field"
+      
+    TagKeyName2:
+      Type: String
+      Description: The key for Tag 2 to be added for the resources being deployed.
+      Default: "project"
+      
+    TagValueName2:
+      Type: String
+      Description: The value for Tag 2 to be added for the resources being deployed.
+      Default: "udaystestd"
+      
+    TagKeyName3:
+      Type: String
+      Description: The key for Tag 3 to be added for the resources being deployed.
+      Default: "org"
+      
+    TagValueName3:
+      Type: String
+      Description: The value for Tag 3 to be added for the resources being deployed.
+      Default: "sa"
+      
+    TagKeyName4:
+      Type: String
+      Description: The key for Tag 4 to be added for the resources being deployed.
+      Default: "CreatorId"
+      
+    TagValueName4:
+      Type: String
+      Description: The value for Tag 4 to be added for the resources being deployed.
+      Default: "46148586973"
+      
+    TagKeyName5:
+      Type: String
+      Description: The key for Tag 5 to be added for the resources being deployed.
+      Default: "CreatorName"
+      
+    TagValueName5:
+      Type: String
+      Description: The value for Tag 5 to be added for the resources being deployed.
+      Default: "uday@elastic.co"
+      
+    TagKeyName6:
+      Type: String
+      Description: The key for Tag 6 to be added for the resources being deployed.
+      Default: "team"
+      
+    TagValueName6:
+      Type: String
+      Description: The value for Tag 6 to be added for the resources being deployed.
+      Default: "a-team"
+      
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -97,6 +157,21 @@ Metadata:
       - VPCId
       - SubnetIds
       - RouteTableIds
+    - Label:
+        default: Tag Keys & Values (Optional)
+      Parameters:
+      - TagKeyName1
+      - TagValueName1
+      - TagKeyName2
+      - TagValueName2
+      - TagKeyName3
+      - TagValueName3
+      - TagKeyName4
+      - TagValueName4
+      - TagKeyName5
+      - TagValueName5
+      - TagKeyName6
+      - TagValueName6
     ParameterLabels:
       ElasticCloudID:
         default: Elastic Cloud ID
@@ -224,23 +299,23 @@ Resources:
         }
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
         
   ElasticCloudTrailSQS:       # SQS queue for centralized CloudTrail logs
     Type: AWS::SQS::Queue
@@ -251,23 +326,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
       
   ElasticCloudTrailSQSPolicy:     # Access policy for the CloudTrail SQS queue. 
     Type: AWS::SQS::QueuePolicy
@@ -299,23 +374,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
       
   ElbSQSPolicy:     # Access policy for the Elastic Load Balancer SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -347,23 +422,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
   
   ElasticS3SQSPolicy:      # Access policy for the S3 access logs SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -395,23 +470,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   VPCFlowLogsElasticSQSPolicy:      # Access policy for the VPC flow logs SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -444,23 +519,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
   
   ElasticWafSQSPolicy:      # Access policy for the WAF SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -493,23 +568,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
       
   EmrSQSPolicy:     # Access policy for the EMR SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -541,23 +616,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   NfSQSPolicy:     # Access policy for the Network Firewall SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -589,23 +664,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
   
   ElasticCloudfrontSQSPolicy:     # Access policy for the CloudFront SQS queue.
     Type: AWS::SQS::QueuePolicy
@@ -646,23 +721,23 @@ Resources:
               SSEAlgorithm: AES256
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
               
   S3AccessLoggingBucketPolicy:      # Bucket policy for the S3 access logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -720,23 +795,23 @@ Resources:
             Status: Enabled
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   VPCFlowLogsBucketPolicy:      # Bucket policy for the VPC flow logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -795,23 +870,23 @@ Resources:
             Status: Enabled
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   ElbBucketPolicy:      # Bucket policy for the ELB central logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -874,23 +949,23 @@ Resources:
             Status: "Enabled"
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   WafBucketPolicy:      # Bucket policy for the WAF central logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -950,23 +1025,23 @@ Resources:
             Status: Enabled
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   EmrBucketPolicy:      #  Bucket policy for the EMR central logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -1025,23 +1100,23 @@ Resources:
             Status: Enabled
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   NfBucketPolicy:       # Bucket policy for the Network Firewall central logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -1100,23 +1175,23 @@ Resources:
             Status: Enabled
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
               
   CloudfrontLoggingBucketPolicy:        # Bucket policy for the CloudFront logging bucket.
     Type: AWS::S3::BucketPolicy
@@ -1154,13 +1229,6 @@ Resources:
       Location:
         ApplicationId: arn:aws:serverlessrepo:eu-central-1:267093732750:applications/helper-macro-elastic-serverless-forwarder
         SemanticVersion: 1.9.0
-      Tags:
-        division: field
-        project: udaystestd
-        org: sa
-        CreatorId: 46148586973
-        CreatorName: uday@elastic.co
-        team: a-team
     DependsOn:
     - TriggersElasticBootstrapLambdaFunction
     Metadata:
@@ -1172,13 +1240,6 @@ Resources:
       Location:
         ApplicationId: arn:aws:serverlessrepo:eu-central-1:267093732750:applications/helper-application-elastic-serverless-forwarder
         SemanticVersion: 1.9.0
-      Tags:
-        division: field
-        project: udaystestd
-        org: sa
-        CreatorId: 46148586973
-        CreatorName: uday@elastic.co
-        team: a-team
       Parameters:
         ElasticServerlessForwarderS3ConfigFile: !Sub s3://${S3ConfigFileBucket}/config.yml
         ElasticServerlessForwarderSSMSecrets: !Ref ElasticSecret
@@ -1262,23 +1323,23 @@ Resources:
         Status: Enabled
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   S3ConfigFileBucketPolicy:     # Bucket policy for S3ConfigFileBucket bucket which stores config.yaml file.
     Type: AWS::S3::BucketPolicy
@@ -1319,23 +1380,23 @@ Resources:
       KmsDataKeyReusePeriodSeconds: 1800
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
       
   ElasticGuardDutySQSPolicy:        # Queue policy for Elastic GuardDuty SQS.
     Type: 'AWS::SQS::QueuePolicy'
@@ -1381,23 +1442,23 @@ Resources:
               SSEAlgorithm: AES256
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
               
   GuardDutyLoggingBucketPolicy:     #  Bucket policy for GuardDuty logging bucket.
     Type: 'AWS::S3::BucketPolicy'
@@ -1473,13 +1534,6 @@ Resources:
           S3_BUCKET_NAME: !Ref S3ConfigFileBucket
           CloudTrail_S3_BUCKET_NAME: !Ref CloudTrailBucketName
           CloudTrail_SQS_QUEUE_ARN: !GetAtt ElasticCloudTrailSQS.Arn
-      Tags:
-        division: field
-        project: udaystestd
-        org: sa
-        CreatorId: 46148586973
-        CreatorName: uday@elastic.co
-        team: a-team
 
   ElasticBootstrapLambdaExecutionRole:      # IAM role for execution of Elastic Bootstrap Lambda function.
     Type: 'AWS::IAM::Role'
@@ -1499,23 +1553,23 @@ Resources:
         - 'arn:aws:iam::aws:policy/AmazonS3FullAccess'
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   RolePolicies:     #  IAM policy attached to the Elastic Bootstrap Lambda execution role.
     Type: 'AWS::IAM::Policy'
@@ -1609,23 +1663,23 @@ Resources:
             Resource: '*'
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   ElasticSQSKMSKeyAlias:        # Alias for the Elastic SQS KMS key.
     Type: AWS::KMS::Alias
@@ -1662,23 +1716,23 @@ Resources:
             Resource: '*'
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
 
   ElasticSSMSecretKMSKeyAlias:      # Alias for the ElasticSSMSecretEncryptionKey.
     Type: AWS::KMS::Alias
@@ -1729,23 +1783,23 @@ Resources:
         - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
   
   ElasticForwarderSecurityGroup:        # Security group for the Elastic serverless forwarder application.
     Type: AWS::EC2::SecurityGroup
@@ -1769,23 +1823,23 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         -
-          Key: division
-          Value: field
+          Key: !Ref TagKeyName1
+          Value: !Ref TagValueName1
         -
-          Key: project
-          Value: udaystestd
+          Key: !Ref TagKeyName2
+          Value: !Ref TagValueName2
         -
-          Key: org
-          Value: sa
+          Key: !Ref TagKeyName3
+          Value: !Ref TagValueName3
         -
-          Key: CreatorId
-          Value: 46148586973
+          Key: !Ref TagKeyName4
+          Value: !Ref TagValueName4
         -
-          Key: CreatorName
-          Value: uday@elastic.co
+          Key: !Ref TagKeyName5
+          Value: !Ref TagValueName5
         -
-          Key: team
-          Value: a-team
+          Key: !Ref TagKeyName6
+          Value: !Ref TagValueName6
       
   ElasticServerlessBootstrapFunction:       # Serverless function for creating VPC endpoints if forwarder is deployed in a VPC.
     Type: AWS::Serverless::Function
@@ -2129,13 +2183,6 @@ Resources:
               - HostedZone
           REGION: !Sub ${AWS::Region}
           ROUTE_TABLE_ID: !Join [',', !Ref RouteTableIds]
-      Tags:
-        division: field
-        project: udaystestd
-        org: sa
-        CreatorId: 46148586973
-        CreatorName: uday@elastic.co
-        team: a-team
     
   TriggersBootstrapLambda:      # Custom resource to trigger the execution of the Elastic Serverless Bootstrap Lambda function.
     Type: 'Custom::RunCode'
