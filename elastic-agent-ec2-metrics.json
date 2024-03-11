@@ -189,7 +189,7 @@
                                 "export KIBANA_URL=$KIBANA_URL \n",
                                 "export DeploymentID=$DeploymentID \n",
                                 "export DeploymentVersion=$DeploymentVersion \n",
-                                "wget https://github.com/Udayel/Elastic-ingest-accelerator/blob/main/src/standalone-deployment/elastic-agent.sh \n",
+                                "wget https://raw.githubusercontent.com/onkar7902/Elastic-ingest-accelerator/main/elastic-agent.sh \n",
                                 "sed -i -e ''s/\r$//'' elastic-agent.sh \n",
                                 "chmod +x elastic-agent.sh \n",
                                 "bash elastic-agent.sh \n"        
